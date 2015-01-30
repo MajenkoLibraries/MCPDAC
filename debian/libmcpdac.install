@@ -1,0 +1,4 @@
+MCPDAC.cpp libraries/IO/MCPDAC/
+MCPDAC.h libraries/IO/MCPDAC/
+README.md usr/share/doc/libmcpdac/
+examples/TriangleWave/TriangleWave.ino libraries/IO/MCPDAC/examples/TriangleWave
