@@ -8,5 +8,6 @@ Standards-Version: 3.9.4
 
 Package: libmcpdac
 Architecture: all
+Provides: MCPDAC.h
 Description: MCPDAC library
 
