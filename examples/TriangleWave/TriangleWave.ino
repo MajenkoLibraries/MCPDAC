@@ -17,7 +17,7 @@ void setup()
 
 void loop()
 {
-  static unsigned int volts;
+  static unsigned int volts = 0;
   
   // Set the voltage of channel A.
   MCPDAC.setVoltage(CHANNEL_A,volts&0x0fff);
