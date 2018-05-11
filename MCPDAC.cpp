@@ -70,7 +70,7 @@ void MCPDACClass::updateRegister(bool chan)
 	command |= (chan << REGAB);                 // set channel in register
 	command |= (!this->gain[chan] << REGGA);    // set gain in register
 	command |= (!this->shdn[chan] << REGSHDN);  // set shutdown in register
-	command |= (this->value[chan] & 0x0FFF);                      // set input data bits (strip everything greater than 12 bit)
+	command |= (this->value[chan] & 0x0FFF);    // set input data bits (strip everything greater than 12 bit)
 
 	SPI.setDataMode(SPI_MODE0);
 	digitalWrite(this->cspin,LOW);
