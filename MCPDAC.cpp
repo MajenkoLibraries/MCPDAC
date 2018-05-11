@@ -27,10 +27,6 @@ void MCPDACClass::begin(uint8_t cspin)
 {
 	this->ldac = false;
 	this->cspin = cspin;
-	this->shdn[CHANNEL_A] = false;
-	this->shdn[CHANNEL_B] = false;
-	this->gain[CHANNEL_A] = GAIN_LOW;
-	this->gain[CHANNEL_B] = GAIN_LOW;
 	pinMode(this->cspin,OUTPUT);
 	digitalWrite(this->cspin,HIGH);
 	SPI.begin();
@@ -55,19 +51,10 @@ void MCPDACClass::shutdown(bool chan, bool sd)
 	this->shdn[chan] = sd;
 }
 
-void MCPDACClass::setVoltage(bool channel, uint16_t mv)
+void MCPDACClass::setVoltage(bool chan, uint16_t mv)
 {
-	uint16_t command = 0;
-	command |= (channel << REGAB);                 // set channel in register
-	command |= (!this->gain[channel] << REGGA);    // set gain in register
-	command |= (!this->shdn[channel] << REGSHDN);  // set shutdown in register
-	command |= (mv & 0x0FFF);                      // set input data bits (strip everything greater than 12 bit)
-
-	SPI.setDataMode(SPI_MODE0);
-	digitalWrite(this->cspin,LOW);
-	SPI.transfer(command>>8);
-	SPI.transfer(command&0xFF);
-	digitalWrite(this->cspin,HIGH);
+	this->value[chan] = mv;
+	this->updateRegister(chan);
 }
 
 void MCPDACClass::update()
@@ -76,4 +63,19 @@ void MCPDACClass::update()
 		return;
 	digitalWrite(this->ldacpin,LOW);
 	digitalWrite(this->ldacpin,HIGH);
+}
+
+void MCPDACClass::updateRegister(bool chan)
+{
+	uint16_t command = 0;
+	command |= (chan << REGAB);                 // set channel in register
+	command |= (!this->gain[chan] << REGGA);    // set gain in register
+	command |= (!this->shdn[chan] << REGSHDN);  // set shutdown in register
+	command |= (this->value[chan] & 0x0FFF);    // set input data bits (strip everything greater than 12 bit)
+
+	SPI.setDataMode(SPI_MODE0);
+	digitalWrite(this->cspin,LOW);
+	SPI.transfer(command>>8);
+	SPI.transfer(command&0xFF);
+	digitalWrite(this->cspin,HIGH);
 }
