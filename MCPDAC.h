@@ -17,15 +17,16 @@
 #define GAIN_LOW false
 #define GAIN_HIGH true
 
+#define REGAB    15
+#define REGGA    13
+#define REGSHDN  12
 
 class MCPDACClass {
 
 	public:
 		boolean ldac;
-		boolean gainA;
-		boolean gainB;
-		boolean shutdownA;
-		boolean shutdownB;
+		boolean gain[2] = { GAIN_LOW, GAIN_LOW };
+		boolean shdn[2] = { true, true };
 		unsigned int cspin;
 		unsigned int ldacpin;
 
