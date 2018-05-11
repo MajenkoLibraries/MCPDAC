@@ -23,13 +23,13 @@ void MCPDACClass::begin()
 	this->begin(10);
 }
 
-void MCPDACClass::begin(unsigned int cspin)
+void MCPDACClass::begin(uint8_t cspin)
 {
 	this->ldac = false;
 	this->begin(cspin,0);
 }
 
-void MCPDACClass::begin(unsigned int cspin, unsigned int ldacpin)
+void MCPDACClass::begin(uint8_t cspin, uint8_t ldacpin)
 {
 	this->ldac = true;
 	this->cspin = cspin;
@@ -55,7 +55,7 @@ void MCPDACClass::shutdown(bool chan, bool sd)
 	this->shdn[chan] = sd;
 }
 
-void MCPDACClass::setVoltage(bool channel, unsigned int mv)
+void MCPDACClass::setVoltage(bool channel, uint16_t mv)
 {
 	uint16_t command = 0;
 	command |= (channel << REGAB);                 // set channel in register

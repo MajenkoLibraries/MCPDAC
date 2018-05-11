@@ -24,19 +24,19 @@
 class MCPDACClass {
 
 	public:
-		boolean ldac;
-		boolean gain[2] = { GAIN_LOW, GAIN_LOW };
-		boolean shdn[2] = { true, true };
-		unsigned int cspin;
-		unsigned int ldacpin;
+		bool ldac;
+		bool gain[2] = { GAIN_LOW, GAIN_LOW };
+		bool shdn[2] = { true, true };
+		uint8_t cspin;
+		uint8_t ldacpin;
 
 	public:
 		void begin();
-		void begin(unsigned int cspin);
-		void begin(unsigned int cspin, unsigned int ldacpin);
+		void begin(uint8_t cspin);
+		void begin(uint8_t cspin, uint8_t ldacpin);
 		void setGain(bool chan, bool gain);
 		void shutdown(bool chan, bool sd);
-		void setVoltage(bool channel, unsigned int mv);
+		void setVoltage(bool channel, uint16_t mv);
 		void update();
 };
 
