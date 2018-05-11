@@ -54,6 +54,7 @@ void MCPDACClass::shutdown(bool chan, bool sd)
 void MCPDACClass::setVoltage(bool chan, uint16_t mv)
 {
 	this->value[chan] = mv;
+	this->updateRegister(chan);
 }
 
 void MCPDACClass::update()
