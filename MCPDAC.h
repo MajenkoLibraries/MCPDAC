@@ -23,7 +23,7 @@
 
 class MCPDACClass {
 
-	public:
+	private:
 		bool ldac;
 		bool gain[2] = { GAIN_LOW, GAIN_LOW };
 		bool shdn[2] = { true, true };

@@ -26,23 +26,23 @@ void MCPDACClass::begin()
 void MCPDACClass::begin(uint8_t cspin)
 {
 	this->ldac = false;
-	this->begin(cspin,0);
+	this->cspin = cspin;
+	this->shdn[CHANNEL_A] = false;
+	this->shdn[CHANNEL_B] = false;
+	this->gain[CHANNEL_A] = GAIN_LOW;
+	this->gain[CHANNEL_B] = GAIN_LOW;
+	pinMode(this->cspin,OUTPUT);
+	digitalWrite(this->cspin,HIGH);
+	SPI.begin();
 }
 
 void MCPDACClass::begin(uint8_t cspin, uint8_t ldacpin)
 {
+	this->begin(cspin);
 	this->ldac = true;
-	this->cspin = cspin;
 	this->ldacpin = ldacpin;
-	this->shdn[CHANNEL_A] = false;
-	this->shdn[CHANNEL_B] = false;
-	this->gain[CHANNEL_A] = false;
-	this->gain[CHANNEL_B] = false;
 	pinMode(this->ldacpin,OUTPUT);
 	digitalWrite(this->ldacpin,HIGH);
-	pinMode(this->cspin,OUTPUT);
-	digitalWrite(this->cspin,HIGH);
-	SPI.begin();
 }
 
 void MCPDACClass::setGain(bool chan, bool gain)
