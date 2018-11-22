@@ -7,7 +7,7 @@
     "category": "IO",
     "subcategory": "Analog",
     "maintainer": "Matt Jenkins <matt@majenko.co.uk>",
-    "version": "1.0.0",
+    "version": "1.1.5",
     "family": "all",
     "core": "all",
     "install": {
