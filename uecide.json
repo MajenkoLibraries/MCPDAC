@@ -1,18 +1,1 @@
-{
-    "name": "MCPDAC",
-    "provides": "MCPDAC.h",
-    "license": "LICENSE.md",
-    "readme": "README.md",
-    "description": "MCP4822 (and similar) DAC library",
-    "category": "IO",
-    "subcategory": "Analog",
-    "maintainer": "Matt Jenkins <matt@majenko.co.uk>",
-    "version": "1.1.5",
-    "family": "all",
-    "core": "all",
-    "install": {
-        "examples": "/",
-        "MCPDAC.cpp": "/",
-        "MCPDAC.h": "/"
-    }
-}
+{"name":"MCPDAC","provides":"MCPDAC.h","license":"LICENSE.md","readme":"README.md","description":"MCP4822 (and similar) DAC library","category":"IO","subcategory":"Analog","maintainer":"Matt Jenkins <matt@majenko.co.uk>","version":"1.1.6","family":"all","core":"all","install":{"examples":"\/","library.properties":"\/","src":"\/"}}
